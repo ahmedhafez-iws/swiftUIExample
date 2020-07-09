@@ -15,6 +15,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        UITableView.appearance().separatorStyle = .none
+        UITableView.appearance().backgroundColor = .clear
+        UITableViewCell.appearance().backgroundColor = .clear
+        
+        UITableView.appearance().allowsSelection = false
+        UITableViewCell.appearance().selectionStyle = .none
+        
+        let navigationBarAppearace = UINavigationBar.appearance()
+        let barButtonAppearance = UIBarButtonItem.appearance()
+        
+        if let backIcon = UIImage(named: "ic_back_reversed")?.withRenderingMode(.alwaysOriginal) {
+            barButtonAppearance.setBackButtonBackgroundImage(backIcon, for: .normal, barMetrics: .default)
+            navigationBarAppearace.backIndicatorImage = backIcon
+            navigationBarAppearace.backIndicatorTransitionMaskImage = backIcon
+            navigationBarAppearace.backItem?.leftItemsSupplementBackButton = true
+            navigationBarAppearace.backItem?.leftBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        }
+        
         return true
     }
 
