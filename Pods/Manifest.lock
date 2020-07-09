@@ -1,0 +1,32 @@
+PODS:
+  - AKSideMenu (1.4.5)
+  - Alamofire (5.2.1)
+  - Introspect (0.1.0)
+  - SwiftUIRefresh (0.0.3):
+    - Introspect (~> 0.1.0)
+  - SwiftyJSON (5.0.0)
+
+DEPENDENCIES:
+  - AKSideMenu
+  - Alamofire
+  - SwiftUIRefresh
+  - SwiftyJSON
+
+SPEC REPOS:
+  trunk:
+    - AKSideMenu
+    - Alamofire
+    - Introspect
+    - SwiftUIRefresh
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  AKSideMenu: 2880c44ee04a68f40be783c5cb997b2e0ee22401
+  Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
+  Introspect: ad32f2b7b9e7ac2c008b9dfec3d5325fbd3660fa
+  SwiftUIRefresh: ca6ae2718d25aad5dd68bbf5d2ae36ef6ade98bf
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+
+PODFILE CHECKSUM: 1ff5e9921c2d07e27c01c6dfc9357fd24914f8e9
+
+COCOAPODS: 1.9.3
