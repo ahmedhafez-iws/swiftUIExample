@@ -11,6 +11,7 @@ import SwiftUI
 struct DraggableSideMenu: View {
     var viewModel: MainViewViewModel
     @State var showMenu = false
+    @State var offset: CGFloat = 0
     let sideMenuContentViewModel: SideMenuContentViewModel
     
     init(viewModel: MainViewViewModel) {
@@ -20,7 +21,24 @@ struct DraggableSideMenu: View {
     
     var body: some View {
         
-        GeometryReader { geometry in
+//        let closeDrag = DragGesture()
+//        .onChanged { drag in
+//            if drag.translation.width < 0 {
+//                print("HAFEZ \(drag.translation.width)")
+////                self.offset =
+//            }
+//        }
+//        .onEnded {
+//            if $0.translation.width < -100 {
+//                withAnimation {
+//                    self.offset = 0
+//                    self.showMenu = false
+//                }
+//            }
+//        }
+        
+        
+        return GeometryReader { geometry in
             ZStack(alignment: .leading) {
                 Color((self.showMenu ? UIColor(named: "primary_color") : UIColor.clear) ?? UIColor.white)
                 .edgesIgnoringSafeArea(.all)
@@ -40,27 +58,34 @@ struct DraggableSideMenu: View {
                 }
                 .frame(width: geometry.size.width, height: self.showMenu ? geometry.size.height - 140 : geometry.size.height)
                 .disabled(self.showMenu ? true : false)
-                .offset(x: self.showMenu ? min(geometry.size.width * (2/3), 400) - 30 : 0)
+                .offset(x: self.offset - 30)
                 .clipped()
                 .opacity(0.6)
                 
                 
-                MenuView(showMenu: self.$showMenu)
+                MenuView(closeMenuClosure: {
+                    withAnimation {
+                        self.offset = 0
+                        self.showMenu = false
+                    }
+                })
                 .frame(width: min(geometry.size.width * (2/3), 400))
                 .transition(.move(edge: .leading))
                 .transition(.opacity)
                 .scaleEffect(self.showMenu ? 1.0 : 1.5)
                 
-//                if self.showMenu {
-//
-//                }
-                
-                SideMenuContentView(viewModel: self.sideMenuContentViewModel, showMenu: self.$showMenu)
+                SideMenuContentView(viewModel: self.sideMenuContentViewModel, openMenuClosure: {
+                    withAnimation {
+                        self.offset = min(geometry.size.width * (2/3), 400)
+                        self.showMenu = true
+                    }
+                })
                 .frame(width: geometry.size.width, height: self.showMenu ? geometry.size.height - 100 : geometry.size.height)
                 .disabled(self.showMenu ? true : false)
                 .cornerRadius(self.showMenu ? 10 : 0)
-                .offset(x: self.showMenu ? min(geometry.size.width * (2/3), 400) : 0)
+                    .offset(x: self.offset)
             }
+//            .gesture(closeDrag)
         }
     }
 }

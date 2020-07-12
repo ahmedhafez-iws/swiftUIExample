@@ -10,15 +10,13 @@ import SwiftUI
 
 struct MenuView: View {
     
-    @Binding var showMenu: Bool
+    var closeMenuClosure: () -> Void
     
     var body: some View {
         VStack(alignment: .leading) {
             Image("ic_close_side_menu")
             .onTapGesture {
-                withAnimation {
-                    self.showMenu = false
-                }
+                self.closeMenuClosure()
             }
             .padding(.top, 50)
             .padding(.bottom, -50)
@@ -58,6 +56,8 @@ struct MenuView: View {
 
 struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
-        MenuView(showMenu: .constant(false))
+        MenuView(closeMenuClosure: {
+            
+        })
     }
 }

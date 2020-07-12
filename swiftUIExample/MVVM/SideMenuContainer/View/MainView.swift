@@ -23,12 +23,20 @@ struct MainView: View {
         
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
-                SideMenuContentView(viewModel: self.sideMenuContentViewModel, showMenu: self.$showMenu)
+                SideMenuContentView(viewModel: self.sideMenuContentViewModel, openMenuClosure: {
+                    withAnimation {
+                        self.showMenu = true
+                    }
+                })
                 .frame(width: geometry.size.width, height: geometry.size.height)
                 .offset(x: self.showMenu ? min(geometry.size.width * (2/3), 400) : 0)
                 .disabled(self.showMenu ? true : false)
                 if self.showMenu {
-                    MenuView(showMenu: self.$showMenu)
+                    MenuView(closeMenuClosure: {
+                        withAnimation {
+                            self.showMenu = false
+                        }
+                    })
                     .frame(width: min(geometry.size.width * (2/3), 400))
                     .transition(.move(edge: .leading))
                 }

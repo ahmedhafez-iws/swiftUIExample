@@ -10,23 +10,25 @@ import SwiftUI
 
 struct SideMenuContentView: View {
     
+    var openMenuClosure: () -> Void
     var viewModel: SideMenuContentViewModel
-    @Binding var showMenu: Bool
     let eweListingViewModel: EweListingViewModel
     
-    init(viewModel: SideMenuContentViewModel, showMenu: Binding<Bool>) {
+    init(viewModel: SideMenuContentViewModel, openMenuClosure: @escaping () -> Void) {
         self.viewModel = viewModel
-        self._showMenu = showMenu
+        self.openMenuClosure = openMenuClosure
         self.eweListingViewModel = self.viewModel.getViewModelForEweListing()
     }
     
     var body: some View {
-        EweListingView(viewModel: eweListingViewModel, showMenu: self.$showMenu)
+        EweListingView(viewModel: eweListingViewModel, openMenuClosure: openMenuClosure)
     }
 }
 
 struct SideMenuContentView_Previews: PreviewProvider {
     static var previews: some View {
-        SideMenuContentView(viewModel: SideMenuContentViewModel(step: 0), showMenu: .constant(false))
+        SideMenuContentView(viewModel: SideMenuContentViewModel(step: 0), openMenuClosure: {
+            
+        })
     }
 }

@@ -11,15 +11,15 @@ import SwiftUIRefresh
 
 struct EweListingView: View {
     
+    var openMenuClosure: () -> Void
     @ObservedObject var viewModel: EweListingViewModel
     @State private var codeFilter = ""
     @State private var shouldAnimate = true
     @State private var showingRefreshIndicator = false
-    @Binding var showMenu: Bool
     
-    init(viewModel: EweListingViewModel, showMenu: Binding<Bool>) {
+    init(viewModel: EweListingViewModel, openMenuClosure: @escaping () -> Void) {
         self.viewModel = viewModel
-        self._showMenu = showMenu
+        self.openMenuClosure = openMenuClosure
     }
     
     func delete(at offsets: IndexSet) {
@@ -111,9 +111,7 @@ struct EweListingView: View {
                     // do any specifi customization for this navigation bar only
                 })
                 .navigationBarItems(leading: Button(action: {
-                    withAnimation {
-                        self.showMenu = true
-                    }
+                    self.openMenuClosure()
                 }, label: {
                     Image("ic_show_side_menu")
                 }), trailing: EditButton())
@@ -165,7 +163,9 @@ struct TopView: View {
 
 struct EweListingView_Previews: PreviewProvider {
     static var previews: some View {
-        EweListingView(viewModel: EweListingViewModel(), showMenu: .constant(false))
+        EweListingView(viewModel: EweListingViewModel(), openMenuClosure: {
+            
+        })
     }
 }
 
