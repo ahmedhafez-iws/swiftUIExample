@@ -14,6 +14,9 @@ struct DraggableSideMenu: View {
     @State var offset: CGFloat = 0
     let sideMenuContentViewModel: SideMenuContentViewModel
     
+    let maxOffset: CGFloat = 450
+    let offsetRatio: CGFloat = 2/3
+    
     init(viewModel: MainViewViewModel) {
         self.viewModel = viewModel
         sideMenuContentViewModel = self.viewModel.getViewModelForSideMenuContentView()
@@ -21,21 +24,28 @@ struct DraggableSideMenu: View {
     
     var body: some View {
         
-//        let closeDrag = DragGesture()
-//        .onChanged { drag in
-//            if drag.translation.width < 0 {
-//                print("HAFEZ \(drag.translation.width)")
-////                self.offset =
-//            }
-//        }
-//        .onEnded {
-//            if $0.translation.width < -100 {
-//                withAnimation {
-//                    self.offset = 0
-//                    self.showMenu = false
-//                }
-//            }
-//        }
+        let closeDrag = DragGesture()
+        .onChanged { drag in
+            if self.showMenu {
+                print("HAFEZ \(drag.translation.width)")
+                self.offset = max(0, min(self.offset + (drag.translation.width * 0.2), UIScreen.main.bounds.width * 0.8))
+            }
+        }
+        .onEnded { drag in
+            if self.showMenu {
+                if self.offset < 200 {
+                    withAnimation {
+                        self.offset = 0
+                        self.showMenu = false
+                    }
+                }
+                else {
+                    withAnimation {
+                        self.offset = min(UIScreen.main.bounds.width * self.offsetRatio, self.maxOffset)
+                    }
+                }
+            }
+        }
         
         
         return GeometryReader { geometry in
@@ -69,14 +79,14 @@ struct DraggableSideMenu: View {
                         self.showMenu = false
                     }
                 })
-                .frame(width: min(geometry.size.width * (2/3), 400))
+                    .frame(width: min(geometry.size.width * self.offsetRatio, self.maxOffset))
                 .transition(.move(edge: .leading))
                 .transition(.opacity)
-                .scaleEffect(self.showMenu ? 1.0 : 1.5)
+                .scaleEffect(self.showMenu ? 1.0 : 2)
                 
                 SideMenuContentView(viewModel: self.sideMenuContentViewModel, openMenuClosure: {
                     withAnimation {
-                        self.offset = min(geometry.size.width * (2/3), 400)
+                        self.offset = min(geometry.size.width * self.offsetRatio, self.maxOffset)
                         self.showMenu = true
                     }
                 })
@@ -85,7 +95,7 @@ struct DraggableSideMenu: View {
                 .cornerRadius(self.showMenu ? 10 : 0)
                     .offset(x: self.offset)
             }
-//            .gesture(closeDrag)
+            .gesture(closeDrag)
         }
     }
 }
