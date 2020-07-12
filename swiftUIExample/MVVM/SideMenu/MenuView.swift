@@ -27,27 +27,21 @@ struct MenuView: View {
             
             HStack {
                 Image(systemName: "person")
-                    .foregroundColor(.gray)
                     .imageScale(.large)
                 Text("Profile")
-                    .foregroundColor(.gray)
                     .font(.headline)
             }
             HStack {
                 Image(systemName: "envelope")
-                    .foregroundColor(.gray)
                     .imageScale(.large)
                 Text("Messages")
-                    .foregroundColor(.gray)
                     .font(.headline)
             }
             .padding(.top, 30)
             HStack {
                 Image(systemName: "gear")
-                    .foregroundColor(.gray)
                     .imageScale(.large)
                 Text("Settings")
-                    .foregroundColor(.gray)
                     .font(.headline)
             }
             .padding(.top, 30)
@@ -56,7 +50,8 @@ struct MenuView: View {
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color(red: 32/255, green: 32/255, blue: 32/255))
+        .background(Color.clear)
+        .foregroundColor(Color.white)
         .edgesIgnoringSafeArea(.all)
     }
 }

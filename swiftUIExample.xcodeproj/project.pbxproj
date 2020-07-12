@@ -10,6 +10,7 @@
 		1E555ECBBB8F2122D9C982D6 /* Pods_swiftUIExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A47E7038B701FECD320A8892 /* Pods_swiftUIExampleTests.framework */; };
 		37CC04ED4FB936BC26B3358A /* Pods_swiftUIExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9984272CE40F16DE7E907801 /* Pods_swiftUIExample.framework */; };
 		814FEED5513352270CEBE461 /* Pods_swiftUIExample_swiftUIExampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 647C79162DE54FEFA89FF536 /* Pods_swiftUIExample_swiftUIExampleUITests.framework */; };
+		C5409BB724BB2979008DB74D /* DraggableSideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5409BB624BB2979008DB74D /* DraggableSideMenu.swift */; };
 		C578676724B70FFB00E39907 /* EweListingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C578676624B70FFB00E39907 /* EweListingViewModel.swift */; };
 		C578676924B710CB00E39907 /* EweInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C578676824B710CB00E39907 /* EweInfo.swift */; };
 		C578676C24B7111700E39907 /* Cattle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C578676B24B7111700E39907 /* Cattle.swift */; };
@@ -72,6 +73,7 @@
 		9984272CE40F16DE7E907801 /* Pods_swiftUIExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_swiftUIExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A47E7038B701FECD320A8892 /* Pods_swiftUIExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_swiftUIExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B09400571689B2D81D5BBC7B /* Pods-swiftUIExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swiftUIExampleTests.debug.xcconfig"; path = "Target Support Files/Pods-swiftUIExampleTests/Pods-swiftUIExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C5409BB624BB2979008DB74D /* DraggableSideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableSideMenu.swift; sourceTree = "<group>"; };
 		C578676624B70FFB00E39907 /* EweListingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EweListingViewModel.swift; sourceTree = "<group>"; };
 		C578676824B710CB00E39907 /* EweInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EweInfo.swift; sourceTree = "<group>"; };
 		C578676B24B7111700E39907 /* Cattle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cattle.swift; sourceTree = "<group>"; };
@@ -154,6 +156,22 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		C5409BB424BB28FB008DB74D /* DraggableSideMenuController */ = {
+			isa = PBXGroup;
+			children = (
+				C5409BB524BB2925008DB74D /* View */,
+			);
+			path = DraggableSideMenuController;
+			sourceTree = "<group>";
+		};
+		C5409BB524BB2925008DB74D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C5409BB624BB2979008DB74D /* DraggableSideMenu.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		C578676524B70FD100E39907 /* EweListing */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +200,7 @@
 				C5E8B59124BB07180068FC8E /* SideMenuContentView */,
 				C578679A24B76FA600E39907 /* Login */,
 				C578679324B76DB000E39907 /* Launcher */,
+				C5409BB424BB28FB008DB74D /* DraggableSideMenuController */,
 				C578678C24B761FF00E39907 /* SideMenuContainer */,
 				C578678924B7614300E39907 /* SideMenu */,
 				C578676E24B7118C00E39907 /* ManagementScreen */,
@@ -692,6 +711,7 @@
 				C578676C24B7111700E39907 /* Cattle.swift in Sources */,
 				C57867A024B7709900E39907 /* LoginViewModel.swift in Sources */,
 				C578679724B76DD900E39907 /* LauncherViewMoel.swift in Sources */,
+				C5409BB724BB2979008DB74D /* DraggableSideMenu.swift in Sources */,
 				C5821CAE24B5E66200C49DD4 /* DetailView.swift in Sources */,
 				C578676924B710CB00E39907 /* EweInfo.swift in Sources */,
 				C578677D24B71B1D00E39907 /* ListingResponseMeta.swift in Sources */,

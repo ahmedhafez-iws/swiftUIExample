@@ -15,7 +15,9 @@ struct LauncherView: View {
     var body: some View {
         Group {
             if viewModel.isLoggedIn {
-                MainView(viewModel: viewModel.getViewModelForMainView())
+//                MainView(viewModel: viewModel.getViewModelForMainView())
+                
+                DraggableSideMenu(viewModel: viewModel.getViewModelForMainView())
             }
             else {
                 ContentView(viewModel: viewModel.getViewModelForManagementView())

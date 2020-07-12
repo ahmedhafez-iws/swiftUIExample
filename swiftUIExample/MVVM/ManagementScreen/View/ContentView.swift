@@ -40,7 +40,10 @@ struct ContentView: View {
             .navigationViewStyle(StackNavigationViewStyle())
             
             if moveToNextScreen {
-                MainView(viewModel: viewModel.getViewModelForMainView())
+//                MainView(viewModel: viewModel.getViewModelForMainView())
+//                .transition(.move(edge: .trailing))
+                
+                DraggableSideMenu(viewModel: viewModel.getViewModelForMainView())
                 .transition(.move(edge: .trailing))
             }
         }

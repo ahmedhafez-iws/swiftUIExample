@@ -97,7 +97,6 @@ struct EweListingView: View {
                                 .frame(maxWidth: .infinity)
                             }
                         }
-                        .background(Color.clear)
                         .pullToRefresh(isShowing: $showingRefreshIndicator) {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                                 self.showingRefreshIndicator = false
@@ -108,6 +107,9 @@ struct EweListingView: View {
                     }
                 }
                 .navigationBarTitle("Main Screen", displayMode: .inline)
+                .background(NavigationConfigurator { nc in
+                    // do any specifi customization for this navigation bar only
+                })
                 .navigationBarItems(leading: Button(action: {
                     withAnimation {
                         self.showMenu = true
@@ -137,7 +139,7 @@ struct TopView: View {
                     .background(Color.white)
                     .font(.subheadline)
                     .cornerRadius(5)
-
+                
                 NavigationLink(destination: DetailView()) {
                     HStack {
                         Image("ic_search_options")
