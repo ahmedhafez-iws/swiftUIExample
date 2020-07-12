@@ -17,7 +17,7 @@ class MainViewViewModel {
         self.step = step
     }
     
-    func getViewModelForEweListing() -> EweListingViewModel {
-        return EweListingViewModel()
+    func getViewModelForSideMenuContentView() -> SideMenuContentViewModel {
+        return SideMenuContentViewModel(step: step)
     }
 }

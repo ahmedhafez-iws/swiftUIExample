@@ -41,6 +41,8 @@
 		C5821CAA24B5C00700C49DD4 /* Theme.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5821CA924B5C00700C49DD4 /* Theme.xcassets */; };
 		C5821CAC24B5DB6300C49DD4 /* EweListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5821CAB24B5DB6300C49DD4 /* EweListingView.swift */; };
 		C5821CAE24B5E66200C49DD4 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5821CAD24B5E66200C49DD4 /* DetailView.swift */; };
+		C5E8B59524BB07E20068FC8E /* SideMenuContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E8B59424BB07E20068FC8E /* SideMenuContentView.swift */; };
+		C5E8B59724BB08100068FC8E /* SideMenuContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E8B59624BB08100068FC8E /* SideMenuContentViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +109,8 @@
 		C5821CA924B5C00700C49DD4 /* Theme.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Theme.xcassets; sourceTree = "<group>"; };
 		C5821CAB24B5DB6300C49DD4 /* EweListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EweListingView.swift; sourceTree = "<group>"; };
 		C5821CAD24B5E66200C49DD4 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		C5E8B59424BB07E20068FC8E /* SideMenuContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuContentView.swift; sourceTree = "<group>"; };
+		C5E8B59624BB08100068FC8E /* SideMenuContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuContentViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +179,7 @@
 		C578676D24B7117F00E39907 /* MVVM */ = {
 			isa = PBXGroup;
 			children = (
+				C5E8B59124BB07180068FC8E /* SideMenuContentView */,
 				C578679A24B76FA600E39907 /* Login */,
 				C578679324B76DB000E39907 /* Launcher */,
 				C578678C24B761FF00E39907 /* SideMenuContainer */,
@@ -393,6 +398,31 @@
 				C5821C9D24B5BCA300C49DD4 /* Info.plist */,
 			);
 			path = swiftUIExampleUITests;
+			sourceTree = "<group>";
+		};
+		C5E8B59124BB07180068FC8E /* SideMenuContentView */ = {
+			isa = PBXGroup;
+			children = (
+				C5E8B59324BB073C0068FC8E /* ViewModel */,
+				C5E8B59224BB07360068FC8E /* View */,
+			);
+			path = SideMenuContentView;
+			sourceTree = "<group>";
+		};
+		C5E8B59224BB07360068FC8E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C5E8B59424BB07E20068FC8E /* SideMenuContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C5E8B59324BB073C0068FC8E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C5E8B59624BB08100068FC8E /* SideMenuContentViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		FD8A7B5E1DF36188B4C946DE /* Frameworks */ = {
@@ -657,6 +687,8 @@
 				C5821CAC24B5DB6300C49DD4 /* EweListingView.swift in Sources */,
 				C5821C7C24B5BCA100C49DD4 /* SceneDelegate.swift in Sources */,
 				C578678224B71C9400E39907 /* Enums.swift in Sources */,
+				C5E8B59524BB07E20068FC8E /* SideMenuContentView.swift in Sources */,
+				C5E8B59724BB08100068FC8E /* SideMenuContentViewModel.swift in Sources */,
 				C578676C24B7111700E39907 /* Cattle.swift in Sources */,
 				C57867A024B7709900E39907 /* LoginViewModel.swift in Sources */,
 				C578679724B76DD900E39907 /* LauncherViewMoel.swift in Sources */,

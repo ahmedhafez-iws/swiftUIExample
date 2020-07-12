@@ -9,8 +9,22 @@
 import SwiftUI
 
 struct MenuView: View {
+    
+    @Binding var showMenu: Bool
+    
     var body: some View {
         VStack(alignment: .leading) {
+            Image("ic_close_side_menu")
+            .onTapGesture {
+                withAnimation {
+                    self.showMenu = false
+                }
+            }
+            .padding(.top, 50)
+            .padding(.bottom, -50)
+            
+            Spacer()
+            
             HStack {
                 Image(systemName: "person")
                     .foregroundColor(.gray)
@@ -19,7 +33,6 @@ struct MenuView: View {
                     .foregroundColor(.gray)
                     .font(.headline)
             }
-            .padding(.top, 100)
             HStack {
                 Image(systemName: "envelope")
                     .foregroundColor(.gray)
@@ -50,6 +63,6 @@ struct MenuView: View {
 
 struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
-        MenuView()
+        MenuView(showMenu: .constant(false))
     }
 }

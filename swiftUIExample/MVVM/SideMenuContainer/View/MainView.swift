@@ -11,11 +11,28 @@ import SwiftUI
 struct MainView: View {
     
     var viewModel: MainViewViewModel
+    @State var showMenu = false
+    let sideMenuContentViewModel: SideMenuContentViewModel
+    
+    init(viewModel: MainViewViewModel) {
+        self.viewModel = viewModel
+        sideMenuContentViewModel = self.viewModel.getViewModelForSideMenuContentView()
+    }
     
     var body: some View {
+        
         GeometryReader { geometry in
-            EweListingView(viewModel: self.viewModel.getViewModelForEweListing())
-            .frame(width: geometry.size.width, height: geometry.size.height)
+            ZStack(alignment: .leading) {
+                SideMenuContentView(viewModel: self.sideMenuContentViewModel, showMenu: self.$showMenu)
+                .frame(width: geometry.size.width, height: geometry.size.height)
+                .offset(x: self.showMenu ? min(geometry.size.width * (2/3), 400) : 0)
+                .disabled(self.showMenu ? true : false)
+                if self.showMenu {
+                    MenuView(showMenu: self.$showMenu)
+                    .frame(width: min(geometry.size.width * (2/3), 400))
+                    .transition(.move(edge: .leading))
+                }
+            }
         }
     }
 }

@@ -15,6 +15,12 @@ struct EweListingView: View {
     @State private var codeFilter = ""
     @State private var shouldAnimate = true
     @State private var showingRefreshIndicator = false
+    @Binding var showMenu: Bool
+    
+    init(viewModel: EweListingViewModel, showMenu: Binding<Bool>) {
+        self.viewModel = viewModel
+        self._showMenu = showMenu
+    }
     
     func delete(at offsets: IndexSet) {
         for index in offsets {
@@ -27,6 +33,7 @@ struct EweListingView: View {
     }
     
     var body: some View {
+        
         
         NavigationView {
             ZStack {
@@ -101,7 +108,13 @@ struct EweListingView: View {
                     }
                 }
                 .navigationBarTitle("Main Screen", displayMode: .inline)
-                .navigationBarItems(trailing: EditButton())
+                .navigationBarItems(leading: Button(action: {
+                    withAnimation {
+                        self.showMenu = true
+                    }
+                }, label: {
+                    Image("ic_show_side_menu")
+                }), trailing: EditButton())
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
@@ -150,7 +163,7 @@ struct TopView: View {
 
 struct EweListingView_Previews: PreviewProvider {
     static var previews: some View {
-        EweListingView(viewModel: EweListingViewModel())
+        EweListingView(viewModel: EweListingViewModel(), showMenu: .constant(false))
     }
 }
 

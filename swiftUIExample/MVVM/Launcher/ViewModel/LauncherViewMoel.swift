@@ -11,7 +11,7 @@ import Foundation
 class LauncherViewModel {
 
     var isLoggedIn: Bool {
-        return false
+        return true
     }
     
     func getViewModelForMainView() -> MainViewViewModel {

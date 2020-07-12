@@ -14,7 +14,7 @@ class EweListingViewModel: ObservableObject {
     private var repository: EweLisitngRepository
     
     @Published private var isFetchingData: Bool
-    private var currentPage: Int
+     var currentPage: Int
     private var totalPagesNumber: Int
     let prefetchingLength: Int = 2
     private (set) var totalItems: Int
@@ -92,7 +92,6 @@ class EweListingViewModel: ObservableObject {
             self?.totalPagesNumber = eweListingResponse.meta.lastPage
             self?.isFetchingData = false
             self?.data += eweListingResponse.data
-            
             self?.currentPage += 1
         }
         
