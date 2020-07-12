@@ -25,11 +25,11 @@ struct DraggableSideMenu: View {
     var body: some View {
         
         let closeDrag = DragGesture()
-        .onChanged { drag in
-            if self.showMenu {
-                print("HAFEZ \(drag.translation.width)")
-                self.offset = max(0, min(self.offset + (drag.translation.width * 0.2), UIScreen.main.bounds.width * 0.8))
-            }
+            .onChanged { drag in
+                if self.showMenu {
+                    print("HAFEZ \(drag.translation.width)")
+                    self.offset = max(0, min(self.offset + (drag.translation.width * 0.2), UIScreen.main.bounds.width * 0.8))
+                }
         }
         .onEnded { drag in
             if self.showMenu {
@@ -51,27 +51,7 @@ struct DraggableSideMenu: View {
         return GeometryReader { geometry in
             ZStack(alignment: .leading) {
                 Color((self.showMenu ? UIColor(named: "primary_color") : UIColor.clear) ?? UIColor.white)
-                .edgesIgnoringSafeArea(.all)
-                
-                ZStack {
-                    GeometryReader { gem in
-                        ZStack {
-                            ShadowView().frame(width: gem.size.width, height: gem.size.height - 40)
-                                .background(Color.white)
-                            .cornerRadius(7)
-                            
-                            ShadowView().frame(width: gem.size.width - 30, height: gem.size.height)
-                                .background(Color.white)
-                            .cornerRadius(7)
-                        }
-                    }
-                }
-                .frame(width: geometry.size.width, height: self.showMenu ? geometry.size.height - 140 : geometry.size.height)
-                .disabled(self.showMenu ? true : false)
-                .offset(x: self.offset - 30)
-                .clipped()
-                .opacity(0.6)
-                
+                    .edgesIgnoringSafeArea(.all)
                 
                 MenuView(closeMenuClosure: {
                     withAnimation {
@@ -80,20 +60,53 @@ struct DraggableSideMenu: View {
                     }
                 })
                     .frame(width: min(geometry.size.width * self.offsetRatio, self.maxOffset))
-                .transition(.move(edge: .leading))
-                .transition(.opacity)
-                .scaleEffect(self.showMenu ? 1.0 : 2)
+                    .transition(.move(edge: .leading))
+                    .transition(.opacity)
+                    .scaleEffect(self.showMenu ? 1.0 : 2)
                 
-                SideMenuContentView(viewModel: self.sideMenuContentViewModel, openMenuClosure: {
-                    withAnimation {
-                        self.offset = min(geometry.size.width * self.offsetRatio, self.maxOffset)
-                        self.showMenu = true
+                ZStack {
+                    GeometryReader { gem in
+                        ZStack {
+                            ShadowView().frame(width: gem.size.width, height: gem.size.height - 100)
+                                .background(Color.white)
+                                .cornerRadius(7)
+                                .opacity(0.6)
+                            
+                            ShadowView().frame(width: gem.size.width - 30, height: gem.size.height - 50)
+                                .background(Color.white)
+                                .cornerRadius(7)
+                                .opacity(0.6)
+                            
+                            SideMenuContentView(viewModel: self.sideMenuContentViewModel, openMenuClosure: {
+                                withAnimation {
+                                    self.offset = min(geometry.size.width * self.offsetRatio, self.maxOffset)
+                                    self.showMenu = true
+                                }
+                            })
+                                .disabled(self.showMenu ? true : false)
+                                .cornerRadius(self.showMenu ? 10 : 0)
+                                .offset(x: self.showMenu ? 30 : 0)
+                            
+                            if self.showMenu {
+                                VStack{
+                                    Spacer()
+                                }
+                                .contentShape(Rectangle())
+                                .frame(width: gem.size.width, height: gem.size.height)
+                            }
+                        }
                     }
-                })
+                }
                 .frame(width: geometry.size.width, height: self.showMenu ? geometry.size.height - 100 : geometry.size.height)
                 .disabled(self.showMenu ? true : false)
-                .cornerRadius(self.showMenu ? 10 : 0)
-                    .offset(x: self.offset)
+                .offset(x: self.showMenu ? self.offset - 30 : self.offset)
+                .clipped()
+                .gesture(self.showMenu ? TapGesture().onEnded({
+                    withAnimation {
+                        self.offset = 0
+                        self.showMenu = false
+                    }
+                }) : nil)
             }
             .gesture(closeDrag)
         }

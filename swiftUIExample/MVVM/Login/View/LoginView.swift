@@ -14,21 +14,21 @@ struct LoginView: View {
     @Binding var moveToNextScreen: Bool
     
     var body: some View {
-        Button(action: {
-            self.viewModel.tryToLogin {
-                withAnimation {
-                    self.moveToNextScreen.toggle()
-                }
-            }
-            }, label: {
-                Text("Log in")
+        VStack {
+            Text("Log in")
                 .foregroundColor(Color.white)
                 .font(.title)
-            })
-            .frame(width: 200, height: 70)
-            .background(Color("primary_color"))
-            .cornerRadius(10)
-            .navigationBarTitle("Login")
+        }
+        .frame(width: 200, height: 70)
+        .background(Color("primary_color"))
+        .cornerRadius(10)
+        .contentShape(Rectangle())
+        .navigationBarTitle("Login")
+        .onTapGesture {
+            withAnimation {
+                self.moveToNextScreen.toggle()
+            }
+        }
     }
 }
 
