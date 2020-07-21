@@ -21,7 +21,7 @@ struct EweListingItem: View {
             VStack(alignment: .leading) {
                 Text(viewModel.eweId)
                     .foregroundColor(Color("primary_color"))
-                    .font(.headline)
+                    .font(.system(size: 20))
                 if viewModel.isBirthExist {
                     HStack {
                         Image(viewModel.deliveryTypeIcon)

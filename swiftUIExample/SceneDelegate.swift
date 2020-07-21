@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftUI
+import AKSideMenu
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -24,12 +25,48 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let launcherView = LauncherView(viewModel: LauncherViewModel())
 
         // Use a UIHostingController as window root view controller.
+//        if let windowScene = scene as? UIWindowScene {
+//            let window = UIWindow(windowScene: windowScene)
+//            window.rootViewController = UIHostingController(rootView: launcherView)
+//            self.window = window
+//            window.makeKeyAndVisible()
+//        }
+        
+        
+        
+        // Create side menu controller
+        let sideMenuViewController: AKSideMenu = AKSideMenu(contentViewController: UIHostingController(rootView: Text("")), leftMenuViewController: nil, rightMenuViewController: nil)
+        
+        let mainView = NewMainView(openMenuClosure: {
+            sideMenuViewController.presentLeftMenuViewController()
+        })
+        
+        let contentController = UIHostingController(rootView: mainView)
+        
+        
+        let menuView = ZStack {
+            Color("primary_color")
+                .edgesIgnoringSafeArea(.all)
+            
+            MenuView(closeMenuClosure: {
+                sideMenuViewController.hideMenuViewController()
+            })
+        }
+        
+        let leftMenuViewController = UIHostingController(rootView: menuView)
+        
+        sideMenuViewController.leftMenuViewController = leftMenuViewController
+        sideMenuViewController.contentViewController = contentController
+        
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: launcherView)
+            window.rootViewController = sideMenuViewController
             self.window = window
+            self.window!.backgroundColor = UIColor.blue
+            sideMenuViewController.backgroundImage = UIImage(named: "side_menu_bg")
             window.makeKeyAndVisible()
         }
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

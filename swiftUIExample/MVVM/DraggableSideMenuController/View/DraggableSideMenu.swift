@@ -12,6 +12,8 @@ struct DraggableSideMenu: View {
     var viewModel: MainViewViewModel
     @State var showMenu = false
     @State var offset: CGFloat = 0
+    @State var heightOffset: CGFloat = 0
+    @State var scale: CGFloat = 2
     let sideMenuContentViewModel: SideMenuContentViewModel
     
     let maxOffset: CGFloat = 450
@@ -24,24 +26,45 @@ struct DraggableSideMenu: View {
     
     var body: some View {
         
+        var lastDragWidth: CGFloat = 0
+        
         let closeDrag = DragGesture()
             .onChanged { drag in
                 if self.showMenu {
-                    print("HAFEZ \(drag.translation.width)")
-                    self.offset = max(0, min(self.offset + (drag.translation.width * 0.2), UIScreen.main.bounds.width * 0.8))
+                    self.offset = max(0, min(self.offset + ((drag.translation.width - lastDragWidth) * 0.1), UIScreen.main.bounds.width * 0.8))
+                    
+                    if self.offset < UIScreen.main.bounds.width * 0.8 {
+                        
+                        self.heightOffset = max(0, min(140, self.heightOffset + ((drag.translation.width - lastDragWidth) * 0.05)))
+                        
+                        self.scale = max(1, min(2, self.scale - (drag.translation.width - lastDragWidth) * (drag.translation.width > 0 ? 0.0005 : 0.0001)))
+                    }
+                    
+                    lastDragWidth = drag.translation.width
+                }
+                else if drag.startLocation.x < 3 {
+                    withAnimation {
+                        self.showMenu = true
+                    }
                 }
         }
         .onEnded { drag in
+            lastDragWidth = 0
             if self.showMenu {
-                if self.offset < 200 {
+                if self.offset < (drag.translation.width > 0 ? 50 : 200) {
                     withAnimation {
                         self.offset = 0
                         self.showMenu = false
+                        self.heightOffset = 0
+                        self.scale = 2
                     }
                 }
                 else {
                     withAnimation {
+                        self.showMenu = true
                         self.offset = min(UIScreen.main.bounds.width * self.offsetRatio, self.maxOffset)
+                        self.heightOffset = 100
+                        self.scale = 1
                     }
                 }
             }
@@ -57,12 +80,13 @@ struct DraggableSideMenu: View {
                     withAnimation {
                         self.offset = 0
                         self.showMenu = false
+                        self.scale = 2
+                        self.heightOffset = 0
                     }
                 })
                     .frame(width: min(geometry.size.width * self.offsetRatio, self.maxOffset))
-                    .transition(.move(edge: .leading))
-                    .transition(.opacity)
-                    .scaleEffect(self.showMenu ? 1.0 : 2)
+//                    .transition(.move(edge: .leading))
+                    .scaleEffect(self.scale)
                 
                 ZStack {
                     GeometryReader { gem in
@@ -81,6 +105,8 @@ struct DraggableSideMenu: View {
                                 withAnimation {
                                     self.offset = min(geometry.size.width * self.offsetRatio, self.maxOffset)
                                     self.showMenu = true
+                                    self.heightOffset = 100
+                                    self.scale = 1
                                 }
                             })
                                 .disabled(self.showMenu ? true : false)
@@ -97,16 +123,19 @@ struct DraggableSideMenu: View {
                         }
                     }
                 }
-                .frame(width: geometry.size.width, height: self.showMenu ? geometry.size.height - 100 : geometry.size.height)
+                .frame(width: geometry.size.width, height: geometry.size.height - self.heightOffset)
                 .disabled(self.showMenu ? true : false)
+//                .offset(x: self.showMenu ? self.offset - 30 : self.offset, y: self.heightOffset / 2)
                 .offset(x: self.showMenu ? self.offset - 30 : self.offset)
                 .clipped()
                 .gesture(self.showMenu ? TapGesture().onEnded({
                     withAnimation {
                         self.offset = 0
                         self.showMenu = false
-                    }
-                }) : nil)
+                        self.heightOffset = 0
+                        self.scale = 2
+                        }
+                    }) : nil)                    
             }
             .gesture(closeDrag)
         }

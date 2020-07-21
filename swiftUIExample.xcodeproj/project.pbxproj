@@ -10,6 +10,8 @@
 		1E555ECBBB8F2122D9C982D6 /* Pods_swiftUIExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A47E7038B701FECD320A8892 /* Pods_swiftUIExampleTests.framework */; };
 		37CC04ED4FB936BC26B3358A /* Pods_swiftUIExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9984272CE40F16DE7E907801 /* Pods_swiftUIExample.framework */; };
 		814FEED5513352270CEBE461 /* Pods_swiftUIExample_swiftUIExampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 647C79162DE54FEFA89FF536 /* Pods_swiftUIExample_swiftUIExampleUITests.framework */; };
+		C51D07B524C716820051968D /* AKSideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51D07B424C716820051968D /* AKSideMenuController.swift */; };
+		C51D07B724C71C940051968D /* NewMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51D07B624C71C940051968D /* NewMainView.swift */; };
 		C5409BB724BB2979008DB74D /* DraggableSideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5409BB624BB2979008DB74D /* DraggableSideMenu.swift */; };
 		C578676724B70FFB00E39907 /* EweListingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C578676624B70FFB00E39907 /* EweListingViewModel.swift */; };
 		C578676924B710CB00E39907 /* EweInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C578676824B710CB00E39907 /* EweInfo.swift */; };
@@ -73,6 +75,8 @@
 		9984272CE40F16DE7E907801 /* Pods_swiftUIExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_swiftUIExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A47E7038B701FECD320A8892 /* Pods_swiftUIExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_swiftUIExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B09400571689B2D81D5BBC7B /* Pods-swiftUIExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swiftUIExampleTests.debug.xcconfig"; path = "Target Support Files/Pods-swiftUIExampleTests/Pods-swiftUIExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C51D07B424C716820051968D /* AKSideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AKSideMenuController.swift; sourceTree = "<group>"; };
+		C51D07B624C71C940051968D /* NewMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMainView.swift; sourceTree = "<group>"; };
 		C5409BB624BB2979008DB74D /* DraggableSideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableSideMenu.swift; sourceTree = "<group>"; };
 		C578676624B70FFB00E39907 /* EweListingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EweListingViewModel.swift; sourceTree = "<group>"; };
 		C578676824B710CB00E39907 /* EweInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EweInfo.swift; sourceTree = "<group>"; };
@@ -156,6 +160,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		C51D07B324C716560051968D /* AKSideMenuAdaptation */ = {
+			isa = PBXGroup;
+			children = (
+				C51D07B424C716820051968D /* AKSideMenuController.swift */,
+				C51D07B624C71C940051968D /* NewMainView.swift */,
+			);
+			path = AKSideMenuAdaptation;
+			sourceTree = "<group>";
+		};
 		C5409BB424BB28FB008DB74D /* DraggableSideMenuController */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +210,7 @@
 		C578676D24B7117F00E39907 /* MVVM */ = {
 			isa = PBXGroup;
 			children = (
+				C51D07B324C716560051968D /* AKSideMenuAdaptation */,
 				C5E8B59124BB07180068FC8E /* SideMenuContentView */,
 				C578679A24B76FA600E39907 /* Login */,
 				C578679324B76DB000E39907 /* Launcher */,
@@ -703,12 +717,14 @@
 				C578679E24B76FC800E39907 /* LoginView.swift in Sources */,
 				C578679924B76E0F00E39907 /* LauncherView.swift in Sources */,
 				C578677424B7121E00E39907 /* ManagementViewModel.swift in Sources */,
+				C51D07B524C716820051968D /* AKSideMenuController.swift in Sources */,
 				C5821CAC24B5DB6300C49DD4 /* EweListingView.swift in Sources */,
 				C5821C7C24B5BCA100C49DD4 /* SceneDelegate.swift in Sources */,
 				C578678224B71C9400E39907 /* Enums.swift in Sources */,
 				C5E8B59524BB07E20068FC8E /* SideMenuContentView.swift in Sources */,
 				C5E8B59724BB08100068FC8E /* SideMenuContentViewModel.swift in Sources */,
 				C578676C24B7111700E39907 /* Cattle.swift in Sources */,
+				C51D07B724C71C940051968D /* NewMainView.swift in Sources */,
 				C57867A024B7709900E39907 /* LoginViewModel.swift in Sources */,
 				C578679724B76DD900E39907 /* LauncherViewMoel.swift in Sources */,
 				C5409BB724BB2979008DB74D /* DraggableSideMenu.swift in Sources */,

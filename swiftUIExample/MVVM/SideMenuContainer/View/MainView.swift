@@ -23,6 +23,10 @@ struct MainView: View {
         
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
+                
+                Color("primary_color")
+                .edgesIgnoringSafeArea(.all)
+                
                 SideMenuContentView(viewModel: self.sideMenuContentViewModel, openMenuClosure: {
                     withAnimation {
                         self.showMenu = true
@@ -37,8 +41,8 @@ struct MainView: View {
                             self.showMenu = false
                         }
                     })
-                    .frame(width: min(geometry.size.width * (2/3), 400))
-                    .transition(.move(edge: .leading))
+                        .frame(width: min(geometry.size.width * (2/3), 400))
+                        .transition(.move(edge: .leading))
                 }
             }
         }
